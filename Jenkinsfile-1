@@ -3,6 +3,11 @@ pipeline {
     environment {
         name='Rakesh'
     }
+    parameters {
+        string(name: 'Person', defaultValue: 'Rakesh', description: "Who are you ?")
+        booleanParam(name: 'Male', defaultValue: 'true', description: "")
+        choice(name: 'City', choices: ['Jaipur', 'Bangalore', 'Chennai'] , description: "")
+    }
 
     stages {
         stage('Run Comands') {
@@ -28,7 +33,13 @@ pipeline {
                 sh 'echo "${BUILD_ID}"'
                 sh 'echo "${name}"'
                 sh 'echo "${username}"'
- 
+            }
+        }
+        stage('Parameter') {
+            steps {
+                echo 'deploy'
+                sh 'echo "${name}"'
+                sh 'echo "${Person}"'
             }
         }
     }
