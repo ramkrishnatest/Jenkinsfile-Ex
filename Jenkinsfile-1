@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('1') {
+            steps {
+                sh'ls'
+                sh'pwd'
+            }
+        }
+        stage('2') {
+            steps {
+                sh'''
+                ls
+                ps -ef | grep -i apache2
+                cal 2023
+                '''
+            }
+        }
+    }
+}
