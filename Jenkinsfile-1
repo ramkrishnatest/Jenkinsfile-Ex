@@ -42,5 +42,25 @@ pipeline {
                 sh 'echo "${Person}"'
             }
         }
+        stage('Continue ?') {
+            input {
+                message "Should we continue"
+                ok "Yes Please Continue"
+            }
+            steps {
+                echo 'deploy to prod'
+            }
+        }
+    }
+    post{
+        always {
+            echo 'This message for each time'
+        }
+        failure {
+            echo 'Failure'
+        }
+        success {
+            echo 'Success'
+        }
     }
 }
