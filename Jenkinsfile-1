@@ -1,20 +1,34 @@
 pipeline {
     agent any
+    environment {
+        name='Rakesh'
+    }
 
     stages {
-        stage('1') {
+        stage('Run Comands') {
             steps {
                 sh'ls'
                 sh'pwd'
             }
         }
-        stage('2') {
+        stage('Multiple Commands') {
             steps {
                 sh'''
                 ls
                 ps -ef | grep -i apache2
                 cal 2023
                 '''
+            }
+        }
+        stage('Environmet Variable') {
+            environment {
+                 username ='Rakesh'
+            }
+            steps {
+                sh 'echo "${BUILD_ID}"'
+                sh 'echo "${name}"'
+                sh 'echo "${username}"'
+ 
             }
         }
     }
